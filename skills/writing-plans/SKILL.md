@@ -17,6 +17,8 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 Developer-readable content should use Simplified Chinese whenever practical, unless the user explicitly asks for another language or the repository's existing convention requires otherwise. This includes implementation plans, task descriptions, testing notes, review handoffs, git commit messages, and other content developers need to read or audit. Keep code, commands, paths, API names, quoted text, and tool output in their original language.
 
+When writing a Simplified Chinese plan, translate the plan's structural boilerplate too: headings, labels, task/step names, handoff text, and checklist prose. Do not leave template labels such as "Implementation Plan", "Goal", "Architecture", "Tech Stack", "File Structure", "Task", "Files", "Step", "Expected", or "Plan complete" in English unless the user asked for English or the repository already uses those exact English headings.
+
 **Context:** If working in an isolated worktree, it should have been created via the `superpowers:using-git-worktrees` skill at execution time.
 
 **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
@@ -29,6 +31,8 @@ If the spec covers multiple independent subsystems, it should have been broken i
 ## File Structure
 
 Before defining tasks, map out which files will be created or modified and what each one is responsible for. This is where decomposition decisions get locked in.
+
+For Simplified Chinese plans, write this section heading as `## 文件结构`, and use labels such as `新建`、`修改`、`测试` instead of `Create`、`Modify`、`Test`.
 
 - Design units with clear boundaries and well-defined interfaces. Each file should have one clear responsibility.
 - You reason best about code you can hold in context at once, and your edits are more reliable when files are focused. Prefer smaller, focused files over large ones that do too much.
@@ -51,7 +55,7 @@ This structure informs the task decomposition. Each task should produce self-con
 Commit steps must not contain a prewritten commit message. The executor determines the message from the staged diff at execution time.
 
 Every commit step MUST include:
-- **REQUIRED SUB-SKILL:** Use using-git-commit skill
+- **必需子技能：** 使用 using-git-commit skill
 - Use a subagent to run `git add` for only the files modified by the current task
 - Run `git diff --staged` to inspect the staged diff
 - Generate the commit message from that staged diff according to `using-git-commit`
@@ -62,15 +66,15 @@ Every commit step MUST include:
 **Every plan MUST start with this header:**
 
 ```markdown
-# [Feature Name] Implementation Plan
+# [功能名称] 实施计划
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **给代理工作者：** 必需子技能：使用 superpowers:subagent-driven-development（推荐）或 superpowers:executing-plans 按任务实施本计划。步骤使用复选框（`- [ ]`）语法跟踪。
 
-**Goal:** [One sentence describing what this builds]
+**目标：** [用一句话说明要构建什么]
 
-**Architecture:** [2-3 sentences about approach]
+**架构：** [用 2-3 句话说明实现方案]
 
-**Tech Stack:** [Key technologies/libraries]
+**技术栈：** [关键技术/库]
 
 ---
 ```
@@ -78,14 +82,14 @@ Every commit step MUST include:
 ## Task Structure
 
 ````markdown
-### Task N: [Component Name]
+### 任务 N：[组件名称]
 
-**Files:**
-- Create: `exact/path/to/file.py`
-- Modify: `exact/path/to/existing.py:123-145`
-- Test: `tests/exact/path/to/test.py`
+**文件：**
+- 新建：`exact/path/to/file.py`
+- 修改：`exact/path/to/existing.py:123-145`
+- 测试：`tests/exact/path/to/test.py`
 
-- [ ] **Step 1: Write the failing test**
+- [ ] **步骤 1：编写失败测试**
 
 ```python
 def test_specific_behavior():
@@ -93,33 +97,33 @@ def test_specific_behavior():
     assert result == expected
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [ ] **步骤 2：运行测试并确认失败**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: FAIL with "function not defined"
+运行：`pytest tests/path/test.py::test_name -v`
+预期：FAIL，报错包含 "function not defined"
 
-- [ ] **Step 3: Write minimal implementation**
+- [ ] **步骤 3：编写最小实现**
 
 ```python
 def function(input):
     return expected
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [ ] **步骤 4：运行测试并确认通过**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: PASS
+运行：`pytest tests/path/test.py::test_name -v`
+预期：PASS
 
-- [ ] **Step 5: Commit**
+- [ ] **步骤 5：提交**
 
 ```bash
 git add tests/path/test.py src/path/file.py
 git diff --staged
 ```
 
-**REQUIRED SUB-SKILL:** Use using-git-commit skill
+**必需子技能：** 使用 using-git-commit skill
 
-Use a subagent to generate the commit message from the staged diff according to `using-git-commit`, then run `git commit` with that generated message.
+使用子代理根据 `using-git-commit` 从已暂存 diff 生成提交信息，然后用生成的提交信息运行 `git commit`。
 ````
 
 ## No Placeholders
@@ -156,18 +160,18 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Two execution options:**
+**"计划已完成并保存到 `docs/superpowers/plans/<filename>.md`。有两个执行选项：**
 
-**1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
+**1. 子代理驱动（推荐）** - 我会为每个任务派发新的子代理，并在任务之间审查，迭代更快
 
-**2. Inline Execution** - Execute tasks in this session using executing-plans, batch execution with checkpoints
+**2. 当前会话内执行** - 使用 executing-plans 在本会话中执行任务，并通过检查点分批审查
 
-**Which approach?"**
+**你想采用哪种方式？"**
 
-**If Subagent-Driven chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
-- Fresh subagent per task + two-stage review
+**如果选择子代理驱动：**
+- **必需子技能：** 使用 superpowers:subagent-driven-development
+- 每个任务使用新的子代理 + 两阶段审查
 
-**If Inline Execution chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
-- Batch execution with checkpoints for review
+**如果选择当前会话内执行：**
+- **必需子技能：** 使用 superpowers:executing-plans
+- 分批执行，并在检查点审查
