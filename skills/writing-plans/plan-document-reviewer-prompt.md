@@ -15,6 +15,8 @@ Task tool (general-purpose):
     **Plan to review:** [PLAN_FILE_PATH]
     **Spec for reference:** [SPEC_FILE_PATH]
 
+    **Language:** Write developer-readable review output in Simplified Chinese whenever practical. Keep code, paths, commands, API names, quoted source text, and tool output in their original language.
+
     ## What to Check
 
     | Category | What to Look For |

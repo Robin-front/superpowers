@@ -13,6 +13,10 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
+## Language
+
+Developer-readable content should use Simplified Chinese whenever practical, unless the user explicitly asks for another language or the repository's existing convention requires otherwise. This includes implementation plans, task descriptions, testing notes, review handoffs, git commit messages, and other content developers need to read or audit. Keep code, commands, paths, API names, quoted text, and tool output in their original language.
+
 **Context:** If working in an isolated worktree, it should have been created via the `superpowers:using-git-worktrees` skill at execution time.
 
 **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
@@ -41,6 +45,17 @@ This structure informs the task decomposition. Each task should produce self-con
 - "Implement the minimal code to make the test pass" - step
 - "Run the tests and make sure they pass" - step
 - "Commit" - step
+
+## Commit Steps
+
+Commit steps must not contain a prewritten commit message. The executor determines the message from the staged diff at execution time.
+
+Every commit step MUST include:
+- **REQUIRED SUB-SKILL:** Use using-git-commit skill
+- Use a subagent to run `git add` for only the files modified by the current task
+- Run `git diff --staged` to inspect the staged diff
+- Generate the commit message from that staged diff according to `using-git-commit`
+- Run `git commit` with the generated message
 
 ## Plan Document Header
 
@@ -99,8 +114,12 @@ Expected: PASS
 
 ```bash
 git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
+git diff --staged
 ```
+
+**REQUIRED SUB-SKILL:** Use using-git-commit skill
+
+Use a subagent to generate the commit message from the staged diff according to `using-git-commit`, then run `git commit` with that generated message.
 ````
 
 ## No Placeholders
@@ -118,6 +137,8 @@ Every step must contain the actual content an engineer needs. These are **plan f
 - Complete code in every step — if a step changes code, show the code
 - Exact commands with expected output
 - DRY, YAGNI, TDD, frequent commits
+- Write developer-readable plan content in Simplified Chinese whenever practical
+- Commit steps use staged diffs at execution time; do not prewrite `git commit -m "..."` messages in the plan
 
 ## Self-Review
 

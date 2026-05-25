@@ -11,6 +11,10 @@ Load plan, review critically, execute all tasks, report when complete.
 
 **Announce at start:** "I'm using the executing-plans skill to implement this plan."
 
+## Language
+
+Developer-readable content should use Simplified Chinese whenever practical, unless the user explicitly asks for another language or the repository's existing convention requires otherwise. This includes plan review concerns, progress reports, completion summaries, git commit messages, and other content developers need to read or audit. Keep code, commands, paths, API names, quoted text, and tool output in their original language.
+
 **Note:** Tell your human partner that Superpowers works much better with access to subagents. The quality of its work will be significantly higher if run on a platform with subagent support (such as Claude Code or Codex). If subagents are available, use superpowers:subagent-driven-development instead of this skill.
 
 ## The Process

@@ -11,6 +11,10 @@ Code review requires technical evaluation, not emotional performance.
 
 **Core principle:** Verify before implementing. Ask before assuming. Technical correctness over social comfort.
 
+## Language
+
+Developer-readable content should use Simplified Chinese whenever practical, unless the user explicitly asks for another language or the repository's existing convention requires otherwise. This includes review replies, technical pushback, fix summaries, commit messages, and other content developers need to read or audit. Keep code, commands, paths, API names, quoted review text, and tool output in their original language.
+
 ## The Response Pattern
 
 ```

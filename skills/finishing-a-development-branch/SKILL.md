@@ -13,6 +13,10 @@ Guide completion of development work by presenting clear options and handling ch
 
 **Announce at start:** "I'm using the finishing-a-development-branch skill to complete this work."
 
+## Language
+
+Developer-readable content should use Simplified Chinese whenever practical, unless the user explicitly asks for another language or the repository's existing convention requires otherwise. This includes completion options, status summaries, PR titles/bodies, merge notes, discard confirmations, and other content developers need to read or audit. Keep code, commands, paths, API names, quoted text, and tool output in their original language.
+
 ## The Process
 
 ### Step 1: Verify Tests

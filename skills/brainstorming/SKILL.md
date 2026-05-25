@@ -9,6 +9,10 @@ Help turn ideas into fully formed designs and specs through natural collaborativ
 
 Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design and get user approval.
 
+## Language
+
+Developer-readable content should use Simplified Chinese whenever practical, unless the user explicitly asks for another language or the repository's existing convention requires otherwise. This includes design docs, review requests, user-facing approval prompts, git commit messages, and other content developers need to read or audit. Keep code, commands, paths, API names, quoted text, and tool output in their original language.
+
 <HARD-GATE>
 Do NOT invoke any implementation skill, write any code, scaffold any project, or take any implementation action until you have presented a design and the user has approved it. This applies to EVERY project regardless of perceived simplicity.
 </HARD-GATE>
@@ -110,8 +114,9 @@ digraph brainstorming {
 
 - Write the validated design (spec) to `docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`
   - (User preferences for spec location override this default)
+- Write the spec in Simplified Chinese whenever practical, preserving technical identifiers and quoted source text as-is
 - Use elements-of-style:writing-clearly-and-concisely skill if available
-- Commit the design document to git
+- Commit the design document to git with a Simplified Chinese commit message whenever practical
 
 **Spec Self-Review:**
 After writing the spec document, look at it with fresh eyes:

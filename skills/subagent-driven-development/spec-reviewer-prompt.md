@@ -10,6 +10,8 @@ Task tool (general-purpose):
   prompt: |
     You are reviewing whether an implementation matches its specification.
 
+    **Language:** Write developer-readable review output in Simplified Chinese whenever practical. Keep code, paths, commands, API names, quoted source text, and tool output in their original language.
+
     ## What Was Requested
 
     [FULL TEXT of task requirements]

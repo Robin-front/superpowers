@@ -8,6 +8,8 @@ Task tool (general-purpose):
   prompt: |
     You are implementing Task N: [task name]
 
+    **Language:** Write developer-readable reports, questions, self-review notes, and commit messages in Simplified Chinese whenever practical. Keep code, paths, commands, API names, quoted source text, and tool output in their original language.
+
     ## Task Description
 
     [FULL TEXT of task from plan - paste it here, don't make subagent read file]

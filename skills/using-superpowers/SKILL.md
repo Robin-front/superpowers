@@ -115,3 +115,13 @@ The skill itself tells you which.
 ## User Instructions
 
 Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
+
+## Skill Reference Compatibility
+
+When a workflow references `superpowers:<skill-name>`, resolve it as the local `<skill-name>` if available.
+
+eg: if support `ads-fe skill get <skill-name>`:
+- `superpowers:using-git-worktrees` -> `ads-fe skill get using-git-worktrees`
+- `superpowers:writing-plans` -> `ads-fe skill get writing-plans`
+
+Do not preload all skills. Resolve referenced skills lazily through `ads-fe skill get <skill-name>` and `ads-fe skill path <skill-name>`.

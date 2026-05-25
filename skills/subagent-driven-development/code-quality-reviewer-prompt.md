@@ -6,6 +6,8 @@ Use this template when dispatching a code quality reviewer subagent.
 
 **Only dispatch after spec compliance review passes.**
 
+**Language:** Ask the reviewer to write developer-readable review output in Simplified Chinese whenever practical, while preserving code, paths, commands, API names, quoted source text, and tool output in their original language.
+
 ```
 Task tool (general-purpose):
   Use template at requesting-code-review/code-reviewer.md
