@@ -1,5 +1,5 @@
 ---
-name: git commit template
+name: using-git-commit
 description: "Git 提交规范，定义 commit message 的格式和类型。使用 @git 引用此规则以获取提交规范指导。"
 ---
 
