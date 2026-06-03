@@ -1,9 +1,35 @@
 ---
 name: using-git-commit
-description: "Git 提交规范，定义 commit message 的格式和类型。使用 @git 引用此规则以获取提交规范指导。"
+description: "Use when preparing or creating a git commit, especially when generating commit messages, staging changes, or running git commit."
 ---
 
 # Git 提交规范
+
+## 提交前分支检查
+
+在执行 `git add`、生成 commit message 或运行 `git commit` 之前，必须先检查当前分支：
+
+```bash
+git branch --show-current
+```
+
+如果当前分支是 `main` 或 `master`：
+
+1. 不要在主分支上提交。
+2. 先创建并切换到一个工作分支：
+
+   ```bash
+   git checkout -b <type>_<short-description>
+   ```
+
+3. 再继续暂存改动、生成 commit message、执行 `git commit`。
+
+分支命名建议：
+
+- 否则使用 commit 类型作为前缀：`feat_<short-description>`、`fix_<short-description>`、`docs_<short-description>`、`chore_<short-description>`
+- `<short-description>` 使用简短英文 slug，避免敏感信息、客户名称或过长描述
+
+如果当前处于 detached HEAD 或无法创建分支，停止提交并向用户说明当前 git 状态，等待用户确认下一步。
 
 ## 语言要求
 
